@@ -11,6 +11,6 @@ with open(input_csv_file, 'r', newline='', encoding='latin-1') as file:
 modified_rows = rows[2:-9] if len(rows) > 11 else []
 
 
-with open(output_csv_file, 'w', newline='', encoding='latin-1') as file:
+with open(output_csv_file, 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerows(modified_rows)
