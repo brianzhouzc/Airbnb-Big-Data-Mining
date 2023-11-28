@@ -3,26 +3,49 @@ assert sys.version_info >= (3, 5) # make sure we have Python 3.5+
 
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession, functions, types, Row
-from pyspark.sql.functions import monotonically_increasing_id, last, regexp_replace, col
+from pyspark.sql.functions import monotonically_increasing_id, last, regexp_replace, col, when
 
 
-spark = SparkSession.builder.appName("cmhc_average_rent").getOrCreate()
-df = spark.read.option("header", "true").csv("average_rent_oct-2022.csv")
+def main(input, output):
+
+    schema = types.StructType([
+        types.StructField("Area", types.StringType(), True),
+        types.StructField("Bachelor", types.StringType(), True),
+        types.StructField("1 Bedroom", types.StringType(), True),
+        types.StructField("2 Bedroom", types.StringType(), True),
+        types.StructField("3 Bedroom +", types.StringType(), True),
+        types.StructField("Total", types.StringType(), True)
+    ])
+
+    #df = spark.read \
+        #.option("header", "true") \
+        #.option("encoding", "ISO-8859-1") \
+        #.option("quote", "\"") \
+        #.csv(input)
+
+    df = spark.read.csv(
+        input,
+        encoding = 'ISO-8859-1',
+        schema = schema,
+        quote = '"',
+        sep = ',',
+        header = False,
+        #mode = "DROPMALFORMED"  # This mode drops lines that do not match the schema
+    )
 
 
-def reliability(df):
-    r_map = {"a": "Excellent", "b": "Very good", "c": "Good", "d": "Fair"}
-    for column in df.columns:
-        for key, value in r_map.items():
-            df = df.withColumn(column, when(col(column) == key, value).otherwise(col(column)))
-    return df
+    df.show()
 
-df = reliability(df)
-df = df.filter(~col(df.columns[0]).startswith("Notes"))
-df = df.replace("**", "Data Suppressed")
 
-for column in df.columns:
-    if df.select(column).distinct().count() == 1 and df.select(column).distinct().collect()[0][0] in (None, "", " "):
-        df = df.drop(column)
 
-df.write.option("header", "true").csv("cleaned_data.csv")
+    df.coalesce(1).write.option("header", True).csv(output)
+
+
+if __name__ == '__main__':
+    input = sys.argv[1]
+    output = sys.argv[2]
+    spark = SparkSession.builder.appName('Correlate Logs').getOrCreate()
+    assert spark.version >= '3.0' # make sure we have Spark 3.0+
+    spark.sparkContext.setLogLevel('WARN')
+    sc = spark.sparkContext
+    main(input, output)
