@@ -1,5 +1,7 @@
 import sys
 assert sys.version_info >= (3, 5) # make sure we have Python 3.5+
+import pandas as pd
+
 
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession, functions, types, Row
@@ -17,27 +19,21 @@ def main(input, output):
         types.StructField("Total", types.StringType(), True)
     ])
 
-    #df = spark.read \
-        #.option("header", "true") \
-        #.option("encoding", "ISO-8859-1") \
-        #.option("quote", "\"") \
-        #.csv(input)
 
-    df = spark.read.csv(
-        input,
-        encoding = 'ISO-8859-1',
-        schema = schema,
-        quote = '"',
-        sep = ',',
-        header = False,
-        #mode = "DROPMALFORMED"  # This mode drops lines that do not match the schema
-    )
+    #read csv file
+    df = spark.read.csv(input, header = True, inferSchema = True)
+    #drop columns containing reliability index
+    columns_to_drop = ['_c2', '_c4', '_c6', '_c8', '_c10']  # Replace with the actual columns
+    df = df.drop(*columns_to_drop)
+    #drop last blank columns
+    if df.select(df.columns[-1]).filter(col(df.columns[-1]).isNull()).count() == df.count(): df = df.drop(df.columns[-1])
 
 
     df.show()
+    
 
 
-
+    #output to a csv file
     df.coalesce(1).write.option("header", True).csv(output)
 
 
