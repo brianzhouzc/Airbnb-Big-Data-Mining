@@ -11,7 +11,6 @@ from pyspark.sql.functions import monotonically_increasing_id, last, regexp_repl
 def main(input, output):
 
     schema = types.StructType([
-        types.StructField("Area", types.StringType(), True),
         types.StructField("Bachelor", types.StringType(), True),
         types.StructField("1 Bedroom", types.StringType(), True),
         types.StructField("2 Bedroom", types.StringType(), True),
@@ -21,12 +20,14 @@ def main(input, output):
 
 
     #read csv file
-    df = spark.read.csv(input, header = True, inferSchema = True)
+    df = spark.read.csv(input, header = True)
+    df = df.withColumnRenamed('_c0', 'Area')
     #drop columns containing reliability index
-    columns_to_drop = ['_c2', '_c4', '_c6', '_c8', '_c10']  # Replace with the actual columns
+    columns_to_drop = ['_c2', '_c4', '_c6', '_c8', '_c10'] 
     df = df.drop(*columns_to_drop)
     #drop last blank columns
     if df.select(df.columns[-1]).filter(col(df.columns[-1]).isNull()).count() == df.count(): df = df.drop(df.columns[-1])
+
 
 
     df.show()
@@ -40,7 +41,7 @@ def main(input, output):
 if __name__ == '__main__':
     input = sys.argv[1]
     output = sys.argv[2]
-    spark = SparkSession.builder.appName('Correlate Logs').getOrCreate()
+    spark = SparkSession.builder.appName('cmhc').getOrCreate()
     assert spark.version >= '3.0' # make sure we have Spark 3.0+
     spark.sparkContext.setLogLevel('WARN')
     sc = spark.sparkContext
