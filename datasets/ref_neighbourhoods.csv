@@ -1,43 +1,56 @@
-listing,cmhc,rebgv
-Arbutus Ridge,,Bowen Island
-Downtown,Downtown,Burnaby East
-Downtown Eastside,,Burnaby North
-Dunbar Southlands,,Burnaby South
-Fairview,English Bay,Coquitlam
-Grandview-Woodland,,Greater Vancouver
-Hastings-Sunrise,East Hastings,Ladner
-Kensington-Cedar Cottage,,Lower Mainland
-Kerrisdale,,Maple Ridge
-Killarney,,New Westminster
-Kitsilano,Kitsilano/Point Grey,North Vancouver
-Marpole,Marpole,Pitt Meadows
-Mount Pleasant,Mount Pleasant/Renfrew Heights,Port Coquitlam
-Oakridge,South Granville/Oak,Port Moody
-Renfrew-Collingwood,,Richmond
-Riley Park,,Squamish
-Shaughnessy,,Sunshine Coast
-South Cambie,,Tsawwassen
-Strathcona,,Vancouver East
-Sunset,,Vancouver West
-Victoria-Fraserview,,West Vancouver
-West End,,Whistler
-West Point Grey,,
-,Central Park/Metrotown,
-,Delta,
-,Langley City and Langley DM,
-,Maple Ridge/Pitt Meadows,
-,New Westminster,
-,North Burnaby,
-,North Vancouver CY,
-,North Vancouver DM,
-,Richmond,
-,Southeast Burnaby,
-,Southeast Vancouver,
-,Surrey,
-,Tri-Cities,
-,University Endowment Lands,
-,Vancouver,
-,West End/Stanley Park,
-,West Vancouver,
-,Westside/Kerrisdale,
-,White Rock,
+geojson,airbnb,cmhc
+Anmore,,
+Arbutus Ridge,Arbutus Ridge,Vancouver West
+Barnston Island,,
+Belcarra,,
+Boulder Island,,Bowen Island
+Bowen Island,,
+Burnaby,,Burnaby East
+Burnaby,,Burnaby North
+Burnaby,,Burnaby South
+Carraholly Point,,
+Coquitlam,,Coquitlam
+Delta,,Ladner
+Downtown,Downtown,
+Dunbar-Southlands,Dunbar Southlands,Vancouver West
+Electoral Area A,,
+Fairview,Fairview,Vancouver West
+Grandview-Woodland,Grandview-Woodland,Vancouver East
+Hastings-Sunrise,Hastings-Sunrise,Vancouver East
+Kensington-Cedar Cottage,Kensington-Cedar Cottage,Vancouver East
+Kerrisdale,Kerrisdale,Vancouver West
+Killarney,Killarney,Vancouver East
+Kitsilano,Kitsilano,Vancouver West
+Langley City,,
+Langley Township,,
+Lions Bay,,
+Maple Ridge,,Maple Ridge
+Marpole,Marpole,Vancouver West
+Mount Pleasant,Mount Pleasant,Vancouver East
+New Westminster,,New Westminster
+North Vancouver City,,North Vancouver
+North Vancouver District,,North Vancouver
+Oakridge,Oakridge,Vancouver West
+Pitt Meadows,,Pitt Meadows
+Port Coquitlam,,Port Coquitlam
+Port Moody,,Port Moody
+Renfrew-Collingwood,Renfrew-Collingwood,Vancouver East
+Richmond,,Richmond
+Riley Park,Riley Park,Vancouver East
+Shaughnessy,Shaughnessy,Vancouver West
+South Cambie,South Cambie,Vancouver West
+Strathcona,Downtown Eastside,Vancouver East
+Strathcona,Strathcona,Vancouver East
+Sunset,Sunset,Vancouver East
+Surrey,,
+Tsawwassen First Nation,,Tsawwassen
+Victoria-Fraserview,Victoria-Fraserview,Vancouver East
+West End,West End,
+West Point Grey,West Point Grey,Vancouver West
+West Vancouver,,West Vancouver
+White Rock,,
+,,Whistler
+,,Squamish
+,,Lower Mainland
+,,Greater Vancouver
+,,Sunshine Coast
