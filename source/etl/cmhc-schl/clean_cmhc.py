@@ -26,14 +26,11 @@ def main(input, output):
     columns_to_drop = ['_c2', '_c4', '_c6', '_c8', '_c10'] 
     df = df.drop(*columns_to_drop)
     #drop last blank columns
-    if df.select(df.columns[-1]).filter(col(df.columns[-1]).isNull()).count() == df.count(): df = df.drop(df.columns[-1])
+    if df.select(df.columns[-1]).filter(col(df.columns[-1]).isNull()).count() == df.count(): 
+        df = df.drop(df.columns[-1])
 
-
-
-    df.show()
+    # df.show()
     
-
-
     #output to a csv file
     df.coalesce(1).write.option("header", True).csv(output)
 
