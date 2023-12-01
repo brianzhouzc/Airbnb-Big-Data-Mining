@@ -11,11 +11,11 @@ from pyspark.sql.functions import monotonically_increasing_id, last, regexp_repl
 def main(input, output):
 
     schema = types.StructType([
-        types.StructField("Bachelor", types.StringType(), True),
-        types.StructField("1 Bedroom", types.StringType(), True),
-        types.StructField("2 Bedroom", types.StringType(), True),
-        types.StructField("3 Bedroom +", types.StringType(), True),
-        types.StructField("Total", types.StringType(), True)
+        types.StructField("Bachelor", types.DoubleType(), True),
+        types.StructField("1 Bedroom", types.DoubleType(), True),
+        types.StructField("2 Bedroom", types.DoubleType(), True),
+        types.StructField("3 Bedroom +", types.DoubleType(), True),
+        types.StructField("Total", types.DoubleType(), True)
     ])
 
 
@@ -28,6 +28,9 @@ def main(input, output):
     #drop last blank columns
     if df.select(df.columns[-1]).filter(col(df.columns[-1]).isNull()).count() == df.count(): 
         df = df.drop(df.columns[-1])
+    #replace all ** to -1
+    for col_name in df.columns:
+        df = df.withColumn(col_name, when(col(col_name) == "**", "-1").otherwise(col(col_name)))
 
     # df.show()
     
