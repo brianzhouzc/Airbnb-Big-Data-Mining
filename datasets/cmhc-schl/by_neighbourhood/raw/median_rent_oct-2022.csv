@@ -1,5 +1,3 @@
-Vancouver — Median Rent by Bedroom Type by Neighbourhood
-October 2022 Row / Apartment
 ,Bachelor,,1 Bedroom,,2 Bedroom,,3 Bedroom +,,Total,,
 Ambleside,"1,400",c ,"1,900",a ,"3,250",b ,**,,"2,200",a ,
 Capital Hill/Brentwood,975,a ,"1,405",a ,"1,664",a ,"1,688",b ,"1,543",a ,
@@ -70,12 +68,4 @@ Westside/Kerrisdale Remainder,"2,350",d ,"1,900",a ,"2,850",a ,"4,800",a ,"2,334
 Whalley,**,,"1,600",c ,"1,550",b ,"1,895",a ,"1,600",b ,
 White Rock,975,a ,"1,125",a ,"1,413",b ,"3,200",c ,"1,179",a ,
 Vancouver,"1,345",a ,"1,500",a ,"1,900",a ,"2,100",a ,"1,575",a ,
-
-Notes
-"The following letter codes are used to indicate the reliability of the estimates: a - Excellent, b- Very good, c - Good, d - Fair (Use with Caution)"
-** Data suppressed to protect confidentiality or data not statistically reliable
-++ Change in rent is not statistically significant. This means that the change in rent is not statistically different than zero (0).  (Applies only to % Change of Average Rent Tables).
- - No units exist in the universe for this category
-n/a: Not applicable
-"CMA, CA and CSD definitions are based on 2021 Census Geography Definitions"
-Source,CMHC Rental Market Survey
+South Granville/Oak,"1,265",a ,"1,598",a ,"2,050",a ,**,,"1,602",a ,
