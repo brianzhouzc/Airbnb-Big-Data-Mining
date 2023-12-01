@@ -11,12 +11,12 @@ from pyspark.sql.functions import monotonically_increasing_id, last, regexp_repl
 def main(input, output):
 
     schema = types.StructType([
-        types.StructField("Vacancy Rate (%)", types.StringType(), True),
-        types.StructField("Availability Rate (%)", types.StringType(), True),
-        types.StructField("Average Rent", types.StringType(), True),
-        types.StructField("Median Rent +", types.StringType(), True),
-        types.StructField("% Change", types.StringType(), True),
-        types.StructField("Units", types.StringType(), True)
+        types.StructField("Vacancy Rate (%)", types.DoubleType(), True),
+        types.StructField("Availability Rate (%)", types.DoubleType(), True),
+        types.StructField("Average Rent", types.DoubleType(), True),
+        types.StructField("Median Rent +", types.DoubleType(), True),
+        types.StructField("% Change", types.DoubleType(), True),
+        types.StructField("Units", types.DoubleType(), True)
 
     ])
 
@@ -29,6 +29,10 @@ def main(input, output):
     df = df.drop(*columns_to_drop)
     #drop last blank columns
     #if df.select(df.columns[-1]).filter(col(df.columns[-1]).isNull()).count() == df.count(): df = df.drop(df.columns[-1])
+
+    #replace all ** to -1
+    for col_name in df.columns:
+        df = df.withColumn(col_name, when(col(col_name) == "**", "-1").otherwise(col(col_name)))
 
 
 
