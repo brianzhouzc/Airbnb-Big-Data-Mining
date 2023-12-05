@@ -31,8 +31,10 @@ def main(inputs):
     data = df.filter((df['last_scraped'] == '2023-09-06') & (df['number_of_reviews'] > 0)).select(dt_cols)
     
     train, validation = data.randomSplit([0.75, 0.25])
-    train = train.cache()
+    # train = train.cache()
+    train = data.cache()
     validation = validation.cache()
+    
     
     stringIndexer = StringIndexer(inputCol="room_type", outputCol="room_type_i", stringOrderType="alphabetDesc")
     featureAssembler = VectorAssembler(inputCols=["room_type_i", 'review_scores_accuracy', 'review_scores_cleanliness', 
@@ -42,12 +44,12 @@ def main(inputs):
                                        outputCol="features")
     gbt_regressor = GBTRegressor(featuresCol="features", labelCol="review_scores_rating", maxIter=10)
     pipeline = Pipeline(stages=[stringIndexer, featureAssembler, gbt_regressor])
-    model = pipeline.fit(train)    
-    predictions = model.transform(validation)
-
-    evaluator_r2 = RegressionEvaluator(labelCol="review_scores_rating", predictionCol="prediction", metricName="r2")
-    score_r2 = evaluator_r2.evaluate(predictions)
-    print('Validation score for DecisionTree model: (R square)%g' % (score_r2)) #(R square)0.719047
+    model = pipeline.fit(train)
+       
+    # predictions = model.transform(validation)
+    # evaluator_r2 = RegressionEvaluator(labelCol="review_scores_rating", predictionCol="prediction", metricName="r2")
+    # score_r2 = evaluator_r2.evaluate(predictions)
+    # print('Validation score for DecisionTree model: (R square)%g' % (score_r2)) #(R square)0.719047
     
     # match featureImportances with feature names
     importances = model.stages[-1].featureImportances
@@ -65,7 +67,7 @@ def main(inputs):
     df = spark.createDataFrame(rows, schema=fi_schema)
     df.coalesce(1).write.csv('listing_importance', header=True, mode="overwrite")
       
-    data.write.csv('listing_ml', header=True, mode="overwrite")
+    # data.write.csv('listing_ml', header=True, mode="overwrite")
 
     
 if __name__ == '__main__':

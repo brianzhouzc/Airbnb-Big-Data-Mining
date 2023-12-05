@@ -1,0 +1,9 @@
+feature,importance
+room_type_i,0.01554932210502826
+review_scores_accuracy,0.47463730904283596
+review_scores_cleanliness,0.08707964461238091
+review_scores_checkin,0.08792426436455826
+review_scores_communication,0.059421593806052
+review_scores_location,0.04786132403884011
+review_scores_value,0.10997109636594081
+price,0.11755544566436367
