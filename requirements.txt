@@ -1,0 +1,5 @@
+ocr_nanonets_wrapper==1.1
+pandas==2.1.4
+PyPDF2==3.0.1
+pyspark==3.5.0
+Shapely==2.0.2
