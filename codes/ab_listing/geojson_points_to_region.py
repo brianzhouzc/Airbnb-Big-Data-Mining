@@ -2,10 +2,9 @@ import json
 import csv
 from shapely.geometry import shape, GeometryCollection, Point
 
-with open('datasets/vancouver_district_and_metro_vancouver_boundaries.geojson') as f:
+with open('datasets/neighbourhood/vancouver_district_and_metro_vancouver_boundaries.geojson') as f:
     geojson = json.load(f)
 
-point = Point(40.712776, -74.005974)
 neighbourhoods_shape = {}
 neighbourhoods_counter = {}
 for feature in geojson['features']:
@@ -16,7 +15,7 @@ for feature in geojson['features']:
     #if polygon.contains(point):
         #print ('Found containing polygon:', feature)
 counter = 0
-with open('datasets/inside_airbnb/listings/cleaned/coordinates.csv') as csvfile:
+with open('datasets/inside_airbnb/listings_used/cleaned/coordinates.csv') as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=',')
     next(csv_reader, None)
     for row in csv_reader:
@@ -28,5 +27,5 @@ with open('datasets/inside_airbnb/listings/cleaned/coordinates.csv') as csvfile:
             if polygon.contains(point):
                 neighbourhoods_counter[key] = neighbourhoods_counter[key] + 1
 
-with open("datasets/inside_airbnb/listings/cleaned/airbnb_neighbourhoods_counter.json", "w") as outfile: 
+with open("datasets/inside_airbnb/listings_used/cleaned/airbnb_neighbourhoods_counter.json", "w") as outfile: 
     json.dump(neighbourhoods_counter, outfile)
