@@ -20,7 +20,7 @@ This should output the processed dataset in the folder `output-rebgv`
 
 This process will take a while since it's using OCR to extract data from PDFs.
 
-# Data storage on AWS S3 budget
+# Data storage on AWS S3 bucket
 (Publicly accessible)
 - S3 ARN: arn:aws:s3:::project-lzy
 - AWS Region: US West (Oregon) us-west-2
