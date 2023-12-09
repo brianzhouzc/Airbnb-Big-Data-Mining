@@ -1,3 +1,22 @@
+# Running ETL locally
+All commands should be executed on the root of the repository
+## 1.Airbnb listing
+`spark-submit ./codes/ab_listing/listing_etl.py ./datasets/inside_airbnb/listing_ud/raw ./output_airbnb` 
+
+This should output the processed dataset in the folder `output_airbnb`
+
+## 2.CMHC
+`spark-submit ./codes/cmhc-schl/process_cmhc.py ./datasets/cmhc-schl/by_neighbourhood/raw/average_rent_oct-2022.csv ./datasets/cmhc-schl/by_neighbourhood/raw/median_rent_oct-2022.csv ./datasets/neighbourhood/cmhc_neighbourhood_reference.csv ./output-cmhc`
+
+This should output the processed dataset in the folder `output_cmhc`
+
+# 3.REVBV
+`spark-submit ./codes/rebgv/process_rebgv.py ./datasets/rebgv ./output-rebgv`
+
+This should output the processed dataset in the folder `output-rebgv`
+
+This process will take a while since it's using OCR to extract data from PDFs.
+
 # Data storage on AWS S3 budget
 (Publicly accessible)
 - S3 ARN: arn:aws:s3:::project-lzy
