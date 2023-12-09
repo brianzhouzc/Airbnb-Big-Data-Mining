@@ -31,50 +31,50 @@ This process will take a while since it's using OCR to extract data from PDFs.
 ### clean data
 - Input file URI
 
-    s3://project-lzy/ab_listings/raw/
+    `s3://project-lzy/ab_listings/raw/`
 
 - Argument
 
-    spark-submit --deploy-mode client s3://project-lzy/listing_etl.py s3://project-lzy/ab_listings/raw s3://project-lzy/ab_listings/cleaned
+    `spark-submit --deploy-mode client s3://project-lzy/listing_etl.py s3://project-lzy/ab_listings/raw s3://project-lzy/ab_listings/cleaned`
 
 ### ml result
 - Input file URI
 
-    s3://project-lzy/ab_listings/cleaned/
+    `s3://project-lzy/ab_listings/cleaned/`
 
 - Argument
 
-    spark-submit --deploy-mode client s3://project-lzy/ab_listings/listing_ml.py s3://project-lzy/ab_listings/cleaned/ s3://project-lzy/ab_listings/feature_importance/ s3://project-lzy/ab_listings/review_scores
+    `spark-submit --deploy-mode client s3://project-lzy/ab_listings/listing_ml.py s3://project-lzy/ab_listings/cleaned/ s3://project-lzy/ab_listings/feature_importance/ s3://project-lzy/ab_listings/review_scores`
 
 
 ## 2.cmhc
 - Input file URI
 
-    s3://project-lzy/cmhc/raw/
+    `s3://project-lzy/cmhc/raw/`
 
 - Argument
 
-    spark-submit --deploy-mode client s3://project-lzy/cmhc/clean_cmhc.py s3://project-lzy/cmhc/raw s3://project-lzy/cmhc/cleaned
+    `spark-submit --deploy-mode client s3://project-lzy/cmhc/clean_cmhc.py s3://project-lzy/cmhc/raw s3://project-lzy/cmhc/cleaned`
 
 
 ## 3.rebgv (optional)
 - Input file URI
 
-    s3://project-lzy/rebgv/raw/
+    `s3://project-lzy/rebgv/raw/`
 
 - Argument
 
-    spark-submit --deploy-mode client s3://project-lzy/rebgv/load_csv.py s3://project-lzy/rebgv/raw s3://project-lzy/rebgv/cleaned
+    `spark-submit --deploy-mode client s3://project-lzy/rebgv/load_csv.py s3://project-lzy/rebgv/raw s3://project-lzy/rebgv/cleaned`
 
 
 
-# Visualization on Flourish - TBD
-- Input file URI
+# Visualization on Flourish
+Please use the links below to access all the raw Flourish visualizations. An account might be required for you to copy the project to see the data.
 
-    s3://project-lzy/ab_listings/cleaned/
-    s3://project-lzy/cmhc/cleaned/
+- https://public.flourish.studio/visualisation/16072157/
+- https://public.flourish.studio/visualisation/16072161/
+- https://public.flourish.studio/visualisation/16072163/
 
-- Geographical input
 
 
 # Data analysis on Jupyter notebook
@@ -82,10 +82,10 @@ This process will take a while since it's using OCR to extract data from PDFs.
 ## price_line_chart.ipynb
 - Input file URI
 
-    s3://project-lzy/ab_listings/cleaned/
+    `s3://project-lzy/ab_listings/cleaned/`
 
 ## listing_analysis.ipynb
 - Input file URI
-    - Correlation: s3://project-lzy/ab_listings/review_scores/
-    - Bar chart: s3://project-lzy/ab_listings/feature_importance/
+    - Correlation: `s3://project-lzy/ab_listings/review_scores/`
+    - Bar chart: `s3://project-lzy/ab_listings/feature_importance/`
     
