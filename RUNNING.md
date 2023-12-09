@@ -1,5 +1,8 @@
 # Running ETL locally
-All commands should be executed on the root of the repository
+All commands should be executed on the root of the repository.
+
+All required python packages are listed in `requirements.txt`. Use `pip -r requirements.txt` to install the neccessary requirements
+
 ## 1.Airbnb listing
 `spark-submit ./codes/ab_listing/listing_etl.py ./datasets/inside_airbnb/listing_ud/raw ./output_airbnb` 
 
@@ -75,7 +78,11 @@ Please use the links below to access all the raw Flourish visualizations. An acc
 - https://public.flourish.studio/visualisation/16072161/
 - https://public.flourish.studio/visualisation/16072163/
 
+Most of the data are generated using the commands we mentiond above. Some are sepecific to Flourish:
 
+- `python ./codes/ab_listing/geojson_points_to_region.py`: This generates a JSON file which contains the amount of Airbnb listings per neighbourhood.
+  - Output file: `datasets/inside_airbnb/listing_used/cleaned/airbnb_neighbourhoods_counter.json`
+- Metro Vancouver GeoJson: `datasets/neighbourhood/vancouver_district_and_metro_vancouver_boundaries.geojson`
 
 # Data analysis on Jupyter notebook
 
